@@ -1,7 +1,8 @@
-FROM frolvlad/alpine-glibc:alpine-3.10 as build
+FROM frolvlad/alpine-glibc as build
 
 ARG TMOD_VERSION=0.11.7.8
 ARG TERRARIA_VERSION=1353
+ARG TERRARIA_DOWNLOAD_PREFIX=https://web.archive.org/web/20190630145553/
 
 RUN apk update &&\
     apk add --no-cache --virtual build curl unzip &&\
@@ -11,7 +12,7 @@ WORKDIR /terraria-server
 
 RUN cp /usr/lib/libMonoPosixHelper.so .
 
-RUN curl -SLO "http://terraria.org/server/terraria-server-${TERRARIA_VERSION}.zip" &&\
+RUN curl -SLO "${TERRARIA_DOWNLOAD_PREFIX}http://terraria.org/server/terraria-server-${TERRARIA_VERSION}.zip" &&\
     unzip terraria-server-*.zip &&\
     rm terraria-server-*.zip &&\
     cp --verbose -a "${TERRARIA_VERSION}/Linux/." . &&\
@@ -22,7 +23,7 @@ RUN curl -SL "https://github.com/tModLoader/tModLoader/releases/download/v${TMOD
     rm -r lib tModLoader.bin.x86 tModLoaderServer.bin.x86 &&\
     chmod u+x tModLoaderServer*
 
-FROM frolvlad/alpine-glibc:alpine-3.10
+FROM frolvlad/alpine-glibc
 
 WORKDIR /terraria-server
 COPY --from=build /terraria-server ./
