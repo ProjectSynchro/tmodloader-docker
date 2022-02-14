@@ -8,23 +8,23 @@ Supports graceful shutdown (saves when the container receives a stop command) an
 
 ## Quick Start
 
-    docker run -d --name tmod -p 7777:7777 -v /etc/localtime:/etc/localtime:ro rfvgyhn/tmodloader
+    docker run -d --name tmod -p 7777:7777 -v /etc/localtime:/etc/localtime:ro ghcr.io/projectsynchro/tmodloader
 
 # Adding worlds
 
-    docker run -d --name tmod -p 7777:7777 -v /etc/localtime:/etc/localtime:ro -v $(pwd)/data:/terraria rfvgyhn/tmodloader
+    docker run -d --name tmod -p 7777:7777 -v /etc/localtime:/etc/localtime:ro -v $(pwd)/data:/terraria ghcr.io/projectsynchro/tmodloader
 
 # Server Config File
 
 You can mount a config file. This allows you to specify server and world settings. If you don't specify one, a [default] will be used. See [wiki] for file format details.
 
-    docker run -d --name tmod -p 7777:7777 -v /etc/localtime:/etc/localtime:ro -v $(pwd)/data:/terraria -v $(pwd)/config.txt:/terraria-server/config.txt rfvgyhn/tmodloader
+    docker run -d --name tmod -p 7777:7777 -v /etc/localtime:/etc/localtime:ro -v $(pwd)/data:/terraria -v $(pwd)/config.txt:/terraria-server/config.txt ghcr.io/projectsynchro/tmodloader
 
 # Initial Setup
 
 If you want to use the server's mod browser to install and enable mods, run an interactive container with the `setup` parameter appended to the end.
 
-    docker run -it --rm -v $(pwd)/data:/terraria rfvgyhn/tmodloader setup
+    docker run -it --rm -v $(pwd)/data:/terraria ghcr.io/projectsynchro/tmodloader setup
 
 After setting up your mods, and optionally setting up a world, press `Ctrl+C` to exit the container. Then you can use the normal docker command to run your server. Note that you'll see the mods and the `enabled.json` files appear in your mods folder on the host.
 
@@ -54,14 +54,14 @@ TMOD_IDLE_CHECK_OFFSET   | 0              | This allows for sub-minute resolutio
                -e TMOD_IDLE_CHECK_OFFSET=10 \
                -p 7777:7777 \
                -v /etc/localtime:/etc/localtime:ro \
-               rfvgyhn/tmodloader
+               ghcr.io/projectsynchro/tmodloader
 
 # Sample Docker Compose
 
     version: '3'
     services:
         tmod:
-            image: 'rfvgyhn/tmodloader:latest'
+            image: 'ghcr.io/projectsynchro/tmodloader:latest'
             container_name: 'tmod'
             ports:
                 - '7777:7777'
@@ -77,10 +77,8 @@ TMOD_IDLE_CHECK_OFFSET   | 0              | This allows for sub-minute resolutio
 [commands]: https://terraria.gamepedia.com/Server#List_of_console_commands
 [tMod Version]: https://img.shields.io/badge/tMod-0.11.7.8-blue
 [Terraria Version]: https://img.shields.io/badge/Terraria-1.3.5.3-blue
-[Docker Stars]: https://img.shields.io/docker/stars/rfvgyhn/tmodloader.svg
-[Docker Pulls]: https://img.shields.io/docker/pulls/rfvgyhn/tmodloader.svg
-[default]: https://github.com/Rfvgyhn/tmodloader-docker/blob/master/config.txt
+[default]: https://github.com/projectsynchro/tmodloader-docker/blob/master/config.txt
 [directly]: https://github.com/tModLoader/tModLoader/wiki/Mod-Browser#direct-download
 [Environment Variables]: #environment-variables
 [game-manager]: https://hub.docker.com/r/rfvgyhn/game-manager/
-[0]: https://hub.docker.com/r/rfvgyhn/tmodloader
+[0]: https://github.com/ProjectSynchro/tmodloader-docker/pkgs/container/tmodloader
