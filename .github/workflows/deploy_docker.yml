@@ -2,7 +2,8 @@ name: Image Deployment
 on:
   push:
     tags:
-      - "v*.*.*"
+      - "v*.*.*.*"
+      - "v*.*.*.*-*"
 
 jobs:
   "Create_Release":
