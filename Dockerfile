@@ -1,8 +1,10 @@
 FROM frolvlad/alpine-glibc as build
 
-ARG TMOD_VERSION=0.11.7.8
-ARG TERRARIA_VERSION=1353
-ARG TERRARIA_DOWNLOAD_PREFIX=https://web.archive.org/web/20190630145553/
+ARG TMOD_VERSION="0.11.7.8"
+ARG TERRARIA_VERSION="1353"
+ARG WAYBACK_MACHINE_DOWNLOAD_PREFIX="https://web.archive.org/web/20190630145553/"
+ARG TERRARIA_DOWNLOAD_URL="${WAYBACK_MACHINE_DOWNLOAD_PREFIX}http://terraria.org/server/terraria-server-${TERRARIA_VERSION}.zip"
+ARG TMODLOADER_DOWNLOAD_URL="https://github.com/tModLoader/tModLoader/releases/download/v${TMOD_VERSION}/tModLoader.Linux.v${TMOD_VERSION}.tar.gz"
 
 RUN apk update &&\
     apk add --no-cache --virtual build curl unzip &&\
@@ -12,14 +14,14 @@ WORKDIR /terraria-server
 
 RUN cp /usr/lib/libMonoPosixHelper.so .
 
-RUN curl -SLO "${TERRARIA_DOWNLOAD_PREFIX}http://terraria.org/server/terraria-server-${TERRARIA_VERSION}.zip" &&\
+RUN curl -SLO "${TERRARIA_DOWNLOAD_URL}" &&\
     unzip terraria-server-*.zip &&\
     rm terraria-server-*.zip &&\
     cp --verbose -a "${TERRARIA_VERSION}/Linux/." . &&\
     rm -rf "${TERRARIA_VERSION}" &&\
     rm TerrariaServer.bin.x86 TerrariaServer.exe
 
-RUN curl -SL "https://github.com/tModLoader/tModLoader/releases/download/v${TMOD_VERSION}/tModLoader.Linux.v${TMOD_VERSION}.tar.gz" | tar -xvz &&\
+RUN curl -SL "${TMODLOADER_DOWNLOAD_URL}" | tar -xvz &&\
     rm -r lib tModLoader.bin.x86 tModLoaderServer.bin.x86 &&\
     chmod u+x tModLoaderServer*
 
