@@ -1,8 +1,8 @@
-# tModLoader Docker ![tMod Version] ![Terraria Version]  [![Docker Pulls]][0]
+# tModLoader Docker ![tMod Version] ![Terraria Version]  [![Image Version]][0]
 
 [tModLoader] dedicated server  
 
-Terraria server 1.3.5.3 with tModLoader v0.11.7.8.
+Terraria server 1.4.3.2 with tModLoader v0.11.8.6.
 
 Supports graceful shutdown (saves when the container receives a stop command) and also supports autosaving every 10 minutes (configurable, see [Environment Variables] below).
 
@@ -75,10 +75,11 @@ TMOD_IDLE_CHECK_OFFSET   | 0              | This allows for sub-minute resolutio
 [tModLoader]: https://www.tmodloader.net/
 [wiki]: https://terraria.gamepedia.com/Server#Server_config_file
 [commands]: https://terraria.gamepedia.com/Server#List_of_console_commands
-[tMod Version]: https://img.shields.io/badge/tMod-0.11.7.8-blue
-[Terraria Version]: https://img.shields.io/badge/Terraria-1.3.5.3-blue
+[tMod Version]: https://img.shields.io/badge/tMod-0.11.8.6-blue
+[Terraria Version]: https://img.shields.io/badge/Terraria-1.4.3.2-blue
 [default]: https://github.com/projectsynchro/tmodloader-docker/blob/master/config.txt
 [directly]: https://github.com/tModLoader/tModLoader/wiki/Mod-Browser#direct-download
 [Environment Variables]: #environment-variables
 [game-manager]: https://hub.docker.com/r/rfvgyhn/game-manager/
+[Image Version]: https://img.shields.io/github/v/release/projectsynchro/tmodloader-docker
 [0]: https://github.com/ProjectSynchro/tmodloader-docker/pkgs/container/tmodloader

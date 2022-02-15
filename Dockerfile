@@ -1,9 +1,9 @@
 FROM frolvlad/alpine-glibc as build
 
-ARG TMOD_VERSION="0.11.7.8"
-ARG TERRARIA_VERSION="1353"
-ARG WAYBACK_MACHINE_DOWNLOAD_PREFIX="https://web.archive.org/web/20190630145553/"
-ARG TERRARIA_DOWNLOAD_URL="${WAYBACK_MACHINE_DOWNLOAD_PREFIX}http://terraria.org/server/terraria-server-${TERRARIA_VERSION}.zip"
+ARG TMOD_VERSION="0.11.8.6"
+ARG TERRARIA_VERSION="1432"
+ARG WAYBACK_MACHINE_DOWNLOAD_PREFIX=""
+ARG TERRARIA_DOWNLOAD_URL="${WAYBACK_MACHINE_DOWNLOAD_PREFIX}https://terraria.org/api/download/pc-dedicated-server/terraria-server-${TERRARIA_VERSION}.zip"
 ARG TMODLOADER_DOWNLOAD_URL="https://github.com/tModLoader/tModLoader/releases/download/v${TMOD_VERSION}/tModLoader.Linux.v${TMOD_VERSION}.tar.gz"
 
 RUN apk update &&\
@@ -19,7 +19,7 @@ RUN curl -SLO "${TERRARIA_DOWNLOAD_URL}" &&\
     rm terraria-server-*.zip &&\
     cp --verbose -a "${TERRARIA_VERSION}/Linux/." . &&\
     rm -rf "${TERRARIA_VERSION}" &&\
-    rm TerrariaServer.bin.x86 TerrariaServer.exe
+    rm TerrariaServer.exe
 
 RUN curl -SL "${TMODLOADER_DOWNLOAD_URL}" | tar -xvz &&\
     rm -r lib tModLoader.bin.x86 tModLoaderServer.bin.x86 &&\
